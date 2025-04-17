@@ -159,10 +159,12 @@ function increaseBasket(product) {
 
 function removeFromBasket(id) {
     const index = basket.indexOf(id)
-
+    console.log("doudoub");
+    
     basket.splice(index, 1)
 
     document.querySelector(`.added-to-basket-btn[data-id="${id}"]`).classList.add('hidden')
+    document.querySelector(`.added-to-basket-btn[data-id="${id}"] p`).textContent = 1
     document.querySelector(`.add-to-cart-btn[data-id="${id}"]`).classList.remove('hidden')
 
     console.log(basket)
