@@ -5,12 +5,17 @@ const $orderModalDetail = document.querySelector('.order-detail')
 const $orderModalBtn = document.querySelector('.new-order-btn')
 const $orderModalWrapper = document.querySelector('.order-modal-wrapper')
 
-
+const API = "https://prime-garfish-currently.ngrok-free.app"
 
 let basket = []
 
 async function getProducts() {
-    const res = await fetch('http://10.59.122.27:3000/products')
+    const res = await fetch(`${API}/products`, {
+        headers: {
+            "ngrok-skip-browser-warning": "1",
+            "Content-Type": "application/json",
+          },
+    })
     const data = await res.json()
 
 
@@ -287,11 +292,12 @@ async function confirmOrder() {
         }
     })
 
-    const req = await fetch('http://10.59.122.27:3000/orders', {
+    const req = await fetch(`${API}/orders`, {
         "method": "POST",
         headers: {
             'Authorization': access_token,
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            "ngrok-skip-browser-warning": "1",
         },
 
         body: JSON.stringify({
